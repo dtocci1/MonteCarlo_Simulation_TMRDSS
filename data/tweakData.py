@@ -6,10 +6,11 @@ def main(fileName):
 
     #print(data)
     data= data.replace(',', '\n')
+    data= data.replace(' ','')
     #print(data)
 
     with open(fileName,'w') as f:
         f.write(data)
 
 if __name__ == '__main__':
-  main("sys_state_tmr.csv")
+  main("repairsdss.csv")

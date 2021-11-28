@@ -33,8 +33,8 @@ def check_repair(component, time):
         TRUE = Component repairs
         FALSE = Component remains broken
     '''
-    repair_rate = 0.005
-
+    repair_rate = 0.01
+    
     r_prob = 1 - exp(-1*time*repair_rate)
 
     # Check if it will fail

@@ -49,7 +49,7 @@ from mcFunctions import * # See mcFunctions.py for specific functions definition
 
 # ADJUST SIMULATION PARAMETERS
 stories = 100 # iterations run of simulation
-steps = 10**4 
+steps = 10**4
 saveOutput = True # Saves output (ONLY DO IF STORIES IS SMALL*******)
 
 def main():
@@ -81,9 +81,9 @@ def main():
     # 2nd index: Steps in UP or DOWN state
     # 3rd index: fail rate (only for storage)
     tmr_states = {
-        "server1": [1,0,0.0005],
-        "voter1": [1,0,0.0005],
-        "bus1": [1,0,0.0005],
+        "server1": [1,0,0.00001],
+        "voter1": [1,0,0.00001],
+        "bus1": [1,0,0.00001],
         "storage1": [1,0,0],
         "storage2": [1,0,0],
         "storage3": [1,0,0]
@@ -92,8 +92,8 @@ def main():
     tmr_components = ["server1","voter1","bus1","storage1","storage2","storage3"]
 
     dss_states = {
-        "server1": [1,0,0.0005],
-        "bus1": [1,0,0.0005],
+        "server1": [1,0,0.00001],
+        "bus1": [1,0,0.00001],
         "storage1": [1,0,0],
         "spare1": [1,0,0]
     }
@@ -137,15 +137,20 @@ def main():
             storage_state_tmr = 1
             storage_state_dss = 1
 
+            #print("FAILS: ",failures_over_story_tmr)
+            #print("REPAIRS: ",repairs_over_story_tmr)
             # Determine if component will fail
             for component in tmr_components:
                 if (component == "storage1" or component == "storage2" or component == "storage3" or component == "spare1") and (tmr_states[component][2] == 0):
-                    comp_fail_rate = random.gauss(0.00178082192, 0.0025)
+                    comp_fail_rate = random.gauss(0.000178082192, 0.00025)
+                    while(comp_fail_rate <= 0):
+                        comp_fail_rate = random.gauss(0.000178082192, 0.00025)
                     tmr_states[component][2] = comp_fail_rate
 
 
-                if check_failure(component, tmr_states[component][1], tmr_states[component][2]):
+                if (tmr_states[component][0] == 1) and check_failure(component, tmr_states[component][1], tmr_states[component][2]):
                     # Update state mapping
+                    #print("FAILURE: ", component)
                     tmr_states[component][0] = 0
                     tmr_states[component][1] = 0
                     if recordStory:
@@ -153,10 +158,12 @@ def main():
 
             for component in dss_components:
                 if (component == "storage1" or component == "storage2" or component == "storage3" or component == "spare1") and (dss_states[component][2] == 0):
-                    comp_fail_rate = random.gauss(0.00178082192, 0.0025)
+                    comp_fail_rate = random.gauss(0.000178082192, 0.00025)
+                    while(comp_fail_rate <= 0):
+                        comp_fail_rate = random.gauss(0.000178082192, 0.00025)
                     dss_states[component][2] = comp_fail_rate
                 
-                if check_failure(component, dss_states[component][1], dss_states[component][2]):
+                if (dss_states[component][0] == 1) and check_failure(component, dss_states[component][1], dss_states[component][2]):
                     # Update state mapping
                     dss_states[component][0] = 0
                     dss_states[component][1] = 0
@@ -165,8 +172,9 @@ def main():
 
             # Determine if component will repair
             for component in tmr_components:
-                if check_repair(component, tmr_states[component][1]):
+                if (tmr_states[component][0] == 0) and (check_repair(component, tmr_states[component][1])):
                     # Update state mapping
+                    #print("REPAIR: ", component)
                     tmr_states[component][0] = 1
                     tmr_states[component][1] = 0
                     if (component == "storage1" or component == "storage2" or component == "storage3" or component == "spare1"):
@@ -175,7 +183,7 @@ def main():
                         repairs_tmr += 1
                     
             for component in dss_components:
-                if check_repair(component, dss_states[component][1]):
+                if (dss_states[component][0] == 0) and check_repair(component, dss_states[component][1]):
                     # Update state mapping
                     dss_states[component][0] = 1
                     dss_states[component][1] = 0

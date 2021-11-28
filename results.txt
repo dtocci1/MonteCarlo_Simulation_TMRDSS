@@ -1,13 +1,13 @@
-Results from Simulation 2021-11-27 10:51:05.918031
+Results from Simulation 2021-11-27 16:01:30.045849
 --------------------
 Dynamic Sparing System Statistics: 
-	Overall System Downtime: 244678/1000000 = 0.244678
-	Overall Storage Downtime: 79309/1000000 = 0.079309
-	Average System Downtime Per Story: 2446.78/10000 = 0.244678
-	Average Storage Downtime Per Story: 793.09/10000 = 0.079309
+	Overall System Downtime: 70928/1000000 = 0.070928
+	Overall Storage Downtime: 10418/1000000 = 0.010418
+	Average System Downtime Per Story: 709.28/10000 = 0.07092799999999999
+	Average Storage Downtime Per Story: 104.18/10000 = 0.010418
 --------------------
 Triple Modular Redundancy Statistics: 
-	Overall System Downtime: 406354/1000000 = 0.406354
-	Overall Storage Downtime: 199065/1000000 = 0.199065
-	Average System Downtime Per Story: 4063.54/10000 = 0.406354
-	Average Storage Downtime Per Story: 1990.65/10000 = 0.19906500000000002
+	Overall System Downtime: 117612/1000000 = 0.117612
+	Overall Storage Downtime: 31463/1000000 = 0.031463
+	Average System Downtime Per Story: 1176.12/10000 = 0.117612
+	Average Storage Downtime Per Story: 314.63/10000 = 0.031463
