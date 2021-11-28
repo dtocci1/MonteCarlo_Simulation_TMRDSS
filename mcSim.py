@@ -23,19 +23,6 @@ Failure Rates are based off of the following sources/assumptions:
         - Fail rate each is about .65% yearly or 0.00178082192 a day
             - Source: https://www.backblaze.com/blog/backblaze-hard-drive-stats-q1-2021/
     
-    - Bus failure rate:
-        
-    - Server end failure rate:
-        5% a year = 0.000136986301 / day
-        https://www.statista.com/statistics/430769/annual-failure-rates-of-servers/
-
-Recovery Rates are based off the following sources/assumptions: 
-
-
-TO DO:
-   - Make probabilities realistic
-   - Add cold or warm sparing
-
 '''
 
 import numpy as np
