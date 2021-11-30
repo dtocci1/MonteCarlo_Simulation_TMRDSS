@@ -1,12 +1,11 @@
 # Chicken scratch code to get stats about up/down time
 
 def main():
-    with open('data/stor_state_tmr.csv','r') as f:
+    with open('data/sys_state_tmr.csv','r') as f:
         data = f.readlines()
         new_data=[]
         for ind in data:
             new_data.append(int(ind.replace('\n','')))
-        #print(new_data)
 
     d_count = 0
     u_count = 0
@@ -18,10 +17,13 @@ def main():
             u_count = 0
             d_count += 1
 
-        if new_data[i] == 1:
+        elif new_data[i] == 1:
             downtime.append(d_count)
             d_count = 0
             u_count += 1
+    
+    uptime.append(u_count)
+    downtime.append(d_count)
 
     new_downtime = []
     new_uptime = []
@@ -37,7 +39,8 @@ def main():
     print(new_uptime)
     print(new_downtime)
 
-    print(sum(new_uptime))
-    print(sum(new_downtime))
+    print("UPTIME: ", int(sum(new_uptime)/len(new_uptime)))
+    print("DOWNTIME: ", int(sum(new_downtime)/len(new_downtime)))
+
 if __name__ == '__main__':
     main()

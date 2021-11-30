@@ -1,0 +1,19 @@
+storage tmr
+-----------
+uptime - 192 days
+downtime - 7 days
+
+storage dss
+-----------
+uptime - 550 days
+downtime - 5 days
+
+system tmr
+----------
+uptime - 80 days
+downtime - 11 days
+
+system dss
+----------
+uptime - 153 days
+downtime - 10 days
